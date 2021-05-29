@@ -1,4 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { CreatePostDto } from './dtos/create.dto';
+import { EditPostDto } from './dtos/update.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -15,16 +17,17 @@ export class PostsController {
 
     @Post()
     async createOne(
-        @Body('content') dto: any
+        @Body() dto: CreatePostDto
     ){
-        return {
-            dto: dto
-        }
+        return dto;
+        
     }
 
     @Put()
-    async updateOne(){
-
+    async updateOne(
+        @Body() dto: EditPostDto
+    ){
+        return dto;
     }
 
     @Delete()
