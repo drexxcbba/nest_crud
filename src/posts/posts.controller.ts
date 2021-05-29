@@ -10,12 +10,17 @@ export class PostsController {
 
     @Get()
     async getMany() {
-        return this.postService.getMany();
+        const data = await this.postService.getMany();
+        return {
+            message: 'success',
+            count: data.length,
+            data: data
+        }
     }
 
     @Get(':id')
-    async getOne(@Param('id') id: string){
-        return this.getOne(id);
+    async getOne(@Param('id') id: number){
+        return await this.getOne(id);
     }
 
     @Post()
@@ -25,15 +30,16 @@ export class PostsController {
         return this.postService.createOne(dto);
     }
 
-    @Put()
+    @Put(':id')
     async updateOne(
+        @Param('id') id: number,
         @Body() dto: EditPostDto
     ){
-        return this.postService.updateOne(dto);
+        return this.postService.updateOne(id, dto);
     }
 
-    @Delete()
-    async deleteOne(){
-        return this.postService.deleteOne();
+    @Delete(':id')
+    async deleteOne(@Param('id') id: number){
+        return this.postService.deleteOne(id);
     }
 }
