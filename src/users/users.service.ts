@@ -42,4 +42,12 @@ export class UsersService {
         const user = await this.getOne(id);
         return await this.userRepository.remove(user);
     }
+
+    async findOne(email: string){
+        return await this.userRepository
+            .createQueryBuilder('user')
+            .where({ email })
+            .addSelect('user.password')
+            .getOne();
+    }
 }
