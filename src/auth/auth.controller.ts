@@ -24,7 +24,12 @@ export class AuthController {
     
     @UseGuards(JwtAuthguard)
     @Get('profile')
-    async profile(){
-        return "profss"
+    async profile(
+        @User() user: UserEntity
+    ){
+        return {
+            message: 'Succes',
+            user
+        }
     }
 }
