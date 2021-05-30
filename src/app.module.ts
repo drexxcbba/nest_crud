@@ -6,6 +6,7 @@ import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { DATABASE_HOST, DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_USERNAME } from './config/constants';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { DATABASE_HOST, DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABAS
       envFilePath: '.env'
     }),
     PostsModule, 
-    UsersModule],
+    UsersModule, 
+    AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
